@@ -6,4 +6,5 @@
 > pip install chardef --user
 
 ## 脚本的执行方法：
-> python Xml2Md.py
+> python Xml2Md.py [Xml Directory] [Target Directory] </br>
+> 如果后面没有目录，则默认为当前目录
