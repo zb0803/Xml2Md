@@ -15,9 +15,9 @@
 import html2text
 import os
 import chardet
+import sys
 
 mdsuffix = ".md"
-
 
 # 获取xml文件的编码格式
 def getEncoding(xmlfile):
@@ -37,6 +37,8 @@ def html2md(xmlpath, mdpath):
 
 # 将某一个目录中的所有xml文件转换成md
 def htmls2mds(xmldir, mddir):
+
+    count = 0
     if not os.path.exists(mddir):
         os.mkdir(mddir)
 
@@ -49,7 +51,30 @@ def htmls2mds(xmldir, mddir):
         if splitext[1] == '.xml' or splitext[1] == "html":
             mdpath = os.path.join(mddir, filename[0] + mdsuffix)
             html2md(filepath, mdpath)
+            count = count + 1
+    return count
             
+################################################################
+## Main函数执行转换代码
+################################################################
 
-## 执行转换代码
-htmls2mds("E:\\0001-Ninebot\\0001-Codes\\8000-MiPlugins\\NewXmPluginSDK\\plugProject\\ninebot_scooter\\src\\main\\assets", "E:\\TestMd")
+# 根据命令行中的参数获取 源文件存放目录 和 目标文件存放目录
+
+xmldir = os.path.abspath(".") # 默认源文件存放目录为当前目录
+mddir = os.path.abspath(".") # 默认输出目录为当前目录
+
+if len(sys.argv) >= 2 :
+    xmldir = os.path.abspath(sys.argv[1])
+    if len(sys.argv) >= 3 :
+        mddir = os.path.abspath(sys.argv[2])
+
+print("源文件路径：" + xmldir)
+print("目标路径：" + mddir)
+
+count = htmls2mds(xmldir, mddir)
+if count <= 0 :
+    print("未找到xml/html文件")
+else:
+    print("成功转换 " + count + " 个文件")
+
+# htmls2mds("E:\\0001-Ninebot\\0001-Codes\\8000-MiPlugins\\NewXmPlugnSDK\\plugProject\\ninebot_scooter\\src\\main\\assets", "E:\\TestMd")
