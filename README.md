@@ -3,7 +3,7 @@
 
 ## Windows下安装脚本html2text和chardet脚本:
 > pip install html2text --user </br>
-> pip install chardef --user
+> pip install chardet --user
 
 ## 脚本的执行方法：
 > python Xml2Md.py [Xml Directory] [Target Directory] </br>
