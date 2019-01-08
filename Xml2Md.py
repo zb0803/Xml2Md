@@ -48,7 +48,7 @@ def htmls2mds(xmldir, mddir):
         # 获取文件后缀
         filename = os.path.splitext(file)
         splitext = os.path.splitext(filepath)
-        if splitext[1] == '.xml' or splitext[1] == "html":
+        if splitext[1] == '.xml' or splitext[1] == ".html":
             mdpath = os.path.join(mddir, filename[0] + mdsuffix)
             html2md(filepath, mdpath)
             count = count + 1
@@ -75,6 +75,6 @@ count = htmls2mds(xmldir, mddir)
 if count <= 0 :
     print("未找到xml/html文件")
 else:
-    print("成功转换 " + count + " 个文件")
+    print("成功转换 %d 个文件" % count)
 
 # htmls2mds("E:\\0001-Ninebot\\0001-Codes\\8000-MiPlugins\\NewXmPlugnSDK\\plugProject\\ninebot_scooter\\src\\main\\assets", "E:\\TestMd")
